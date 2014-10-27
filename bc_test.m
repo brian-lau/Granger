@@ -84,23 +84,13 @@ if max(size(omega)) == 1
       Fcrit = finv(1-alpha/2,q,T-q*p);
    end
 else
-%   if 1
-      invXX = inv(X'*X);
-      for i = 1:length(omega)
-         if ~iscell(r)
-            [pval(i),F(i)] = bc_test(r,omega(i),invXX,beta,SSE,alpha,[],size(X,1));
-         else
-            [pval(i),F(i)] = bc_test(r{i},omega(i),invXX,beta,SSE,alpha,[],size(X,1));
-         end
+   invXX = inv(X'*X);
+   for i = 1:length(omega)
+      if ~iscell(r)
+         [pval(i),F(i)] = bc_test(r,omega(i),invXX,beta,SSE,alpha,[],size(X,1));
+      else
+         [pval(i),F(i)] = bc_test(r{i},omega(i),invXX,beta,SSE,alpha,[],size(X,1));
       end
-%   else
-%      for i = 1:length(omega)
-%         if ~iscell(r)
-%            [pval(i),F(i)] = bc_test(r,omega(i),X,beta,SSE,alpha);
-%         else
-%            [pval(i),F(i)] = bc_test(r{i},omega(i),X,beta,SSE,alpha);
-%         end
-%      end
-%   end
+   end
    return
 end
